@@ -52,7 +52,7 @@ var actions = {
         })
     },
     previewPdf(app){
-        app.get('/preview/pdf/*',function(req,res){
+        app.get('/actions/preview/pdf/*',function(req,res){
             // console.log(req.url);
             var pathArr = req.url.split('/')
             var fileName =decodeURI(pathArr[pathArr.length-1])

@@ -22,6 +22,7 @@ var actions = {
         return new Promise(function(resolve,reject){
             $http.post('https://aip.baidubce.com/oauth/2.0/token?grant_type='+params.grant_type+'&client_id='+params.client_id+'&client_secret='+params.client_secret).then(function(data){
                 var response = data.data
+                console.log(response);
                 if(response.error){
                     resolve({
                         code:'500',
@@ -53,9 +54,9 @@ var actions = {
             })
         }
         params[0].image = encodeURIComponent(basePhoto)
-        params[0].image = encodeURIComponent(curPhoto)
+        params[1].image = encodeURIComponent(curPhoto)
 
-        console.log(params);
+        // console.log(params);
         return new Promise(function(resolve,reject){
             $http.post('https://aip.baidubce.com/rest/2.0/face/v3/match?access_token='+access_token,params).then(function(data){
                 var response = data.data

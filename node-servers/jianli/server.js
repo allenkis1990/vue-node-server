@@ -27,7 +27,7 @@ global.require = function(p){
 }
 
 
-var config = global.require('../../config/config.js')
+var config = global.require('./config/config.js')
 var express = global.require('express')
 var app = express()
 var server = global.require('./websocket.js')(app)
