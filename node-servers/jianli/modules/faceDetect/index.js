@@ -22,7 +22,7 @@ var actions = {
         return new Promise(function(resolve,reject){
             $http.post('https://aip.baidubce.com/oauth/2.0/token?grant_type='+params.grant_type+'&client_id='+params.client_id+'&client_secret='+params.client_secret).then(function(data){
                 var response = data.data
-                console.log(response);
+                //console.log(response);
                 if(response.error){
                     resolve({
                         code:'500',
@@ -53,18 +53,29 @@ var actions = {
                 liveness_control:'NONE'
             })
         }
-        params[0].image = encodeURIComponent(basePhoto)
-        params[1].image = encodeURIComponent(curPhoto)
-
-        // console.log(params);
+        params[0].image = basePhoto
+        params[1].image = curPhoto
         return new Promise(function(resolve,reject){
             $http.post('https://aip.baidubce.com/rest/2.0/face/v3/match?access_token='+access_token,params).then(function(data){
                 var response = data.data
+                //console.log(response,123);
+                if(response.error_msg==='SUCCESS'){
+                    resolve({
+                        code:'200',
+                        info:response
+                    })
+                }else{
+                    resolve({
+                        code:'500',
+                        message:'人脸识别失败'
+                    })
+                }
                 resolve({
                     code:'200',
                     info:response
                 })
-            },function(){
+            },function(data){
+                //console.log(data,11111);
                 resolve({
                     code:'500',
                     message:'服务调用失败'
