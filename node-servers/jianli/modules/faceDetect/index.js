@@ -67,7 +67,7 @@ var actions = {
                 }else{
                     resolve({
                         code:'500',
-                        message:'人脸识别失败'
+                        message:response.error_msg
                     })
                 }
                 resolve({
