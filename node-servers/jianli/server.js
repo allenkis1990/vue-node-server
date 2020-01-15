@@ -37,6 +37,7 @@ server.listen(config.port,config.host,function(){
 
 global.require('@base/modules/print/index.js').start(app)
 global.require('@base/modules/faceDetect/index.js').start(app)
+global.require('@base/modules/vueComponent/index.js').start(app)
 
 
 
