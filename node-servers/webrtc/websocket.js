@@ -31,7 +31,7 @@ function wbStart(app){
 
             console.log(roomUsers.length,99);
 
-            if(roomUsers.length>=2){
+            if(roomUsers.length>=2){//
                 socket.emit('full',2)
                 return
             }
