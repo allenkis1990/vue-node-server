@@ -18,9 +18,25 @@ function wbStart(app){
         })
 
         socket.on('join',(obj)=>{
+
+            // console.log(roomInfos,6);
+
             let roomNum = obj.roomNum,
                 nickName = obj.nickName,
                 isAnchor = obj.isAnchor
+
+            let roomUsers = roomInfos.filter((item)=>{
+                return item.roomNum === roomNum && !item.isAnchor
+            })
+
+            console.log(roomUsers.length,99);
+
+            if(roomUsers.length>=2){
+                socket.emit('full',2)
+                return
+            }
+
+
             //房间号未开放的
             if(canUsedRoom.indexOf(roomNum)<0){
                 socket.emit('reject')
@@ -45,8 +61,11 @@ function wbStart(app){
             roomInfos.push({
                 roomNum:roomNum,
                 nickName:nickName,
+                isAnchor:isAnchor,
                 socket:socket
             })
+
+
             // console.log(roomInfos,33);
             socket.emit('joined',{
                 roomNum:roomNum,
