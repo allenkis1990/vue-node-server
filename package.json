@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server-jianli": "node node-servers/jianli/server.js"
+    "server-jianli": "node node-servers/jianli/server.js",
+    "server-webrtc": "node node-servers/webrtc/server.js"
   },
   "author": "",
   "license": "ISC",
